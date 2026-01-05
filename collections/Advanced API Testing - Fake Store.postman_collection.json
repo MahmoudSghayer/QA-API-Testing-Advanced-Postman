@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "b11b62d3-e5d4-4c5c-87bc-108ca8d77ab7",
+		"name": "Advanced API Testing - Fake Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "51244782",
+		"_collection_link": "https://ma7muds001-4539445.postman.co/workspace/Mahmoud's-Workspace~cf213ac4-96c3-4780-8f16-02af20423842/collection/51244782-b11b62d3-e5d4-4c5c-87bc-108ca8d77ab7?action=share&source=collection_link&creator=51244782"
+	},
+	"item": [
+		{
+			"name": "/auth/login - valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Login successful - token received\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"token\");\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"authToken\", jsonData.token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"mor_2314\",\r\n  \"password\": \"83r5^_\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fakestoreapi.com/auth/login",
+					"protocol": "https",
+					"host": [
+						"fakestoreapi",
+						"com"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users - Authenticated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Users retrieved successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Users response is not empty\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.above(0);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{authToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://fakestoreapi.com/users",
+					"protocol": "https",
+					"host": [
+						"fakestoreapi",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/carts/user/{id} – Authenticated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Carts retrieved successfully\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Carts response is not empty\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Each cart has required fields\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    jsonData.forEach(function (cart) {\r",
+							"        pm.expect(cart).to.have.property(\"id\");\r",
+							"        pm.expect(cart).to.have.property(\"userId\");\r",
+							"        pm.expect(cart).to.have.property(\"products\");\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://fakestoreapi.com/carts/user/2",
+					"protocol": "https",
+					"host": [
+						"fakestoreapi",
+						"com"
+					],
+					"path": [
+						"carts",
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

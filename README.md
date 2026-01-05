@@ -1,19 +1,66 @@
-## Advanced API Testing with Postman
+\# Advanced API Testing with Postman
 
-This project demonstrates automated API testing using Postman
-with authentication, environment variables, and collection runner execution.
 
-### Covered Scenarios
-- User authentication and token handling
-- Authorized users retrieval
-- Authorized carts retrieval by user ID
-- Response validation and schema checks
-- Collection Runner execution
 
-### Tools
-- Postman
-- FakeStoreAPI
-- Environment variables
-- Automated tests (JavaScript)
+This repository contains an automated API testing project built using Postman.
 
-Status: ✅ All tests passing
+The project demonstrates authentication handling, environment variables,
+
+and chained API requests with validation.
+
+
+
+\## 🔧 Tools Used
+
+\- Postman
+
+\- JavaScript (Postman Tests)
+
+\- Fake Store API
+
+
+
+\## 📂 Project Structure
+
+collections/
+
+
+
+Advanced\_API\_Testing.postman\_collection.json
+
+environments/
+
+
+
+Fake\_Store\_Env.postman\_environment.json
+
+
+
+\## 🔐 Tested Scenarios
+
+\- User authentication (JWT token handling)
+
+\- Authorized users retrieval
+
+\- Authorized carts retrieval per user
+
+\- Response validation and data integrity checks
+
+
+
+\## ▶ How to Run
+
+1\. Import the collection into Postman
+
+2\. Import the environment
+
+3\. Select \*\*Fake Store Env\*\*
+
+4\. Run the collection using \*\*Collection Runner\*\*
+
+
+
+\## ✅ Status
+
+All automated tests pass successfully.
+
